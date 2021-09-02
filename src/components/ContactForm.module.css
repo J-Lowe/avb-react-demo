@@ -1,0 +1,19 @@
+.contactNameDiv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+.contactFooter {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.contactFooterLeft {
+  float: left;
+}
+
+.contactFooterRight {
+  float: right;
+}

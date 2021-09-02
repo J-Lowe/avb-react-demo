@@ -1,0 +1,12 @@
+.contactDiv {
+    min-width: 150px;
+}
+
+.addContactButton {
+  float: right;
+  margin-top: 25px;
+}
+
+.contactsHeader {
+  display: inline-block;
+}
