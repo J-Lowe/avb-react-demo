@@ -9,7 +9,12 @@ import { Contact } from './interfaces/Contact';
 function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [contactList, setContactList] = useState<ContactPage>();
-  const [selectedContact, setSelectedContact] = useState<Contact>();
+  const [selectedContact, setSelectedContact] = useState<Contact>({
+    id: undefined,
+    firstName: "",
+    lastName: "",
+    emails: []
+  });
 
   useEffect(() => {
     fetch("https://avb-contacts-api.herokuapp.com/contacts/paginated").then(response => {return response.json()}).then(data => {

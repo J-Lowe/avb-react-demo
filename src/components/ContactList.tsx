@@ -1,5 +1,6 @@
 import classes from "./ContactList.module.css";
 import { ContactPage } from "../interfaces/ContactPage";
+import { Contact } from "../interfaces/Contact";
 
 export declare interface ContactListProp {
   contactPage?: ContactPage;
@@ -7,6 +8,7 @@ export declare interface ContactListProp {
 }
 
 function ContactList(prop: ContactListProp) {
+  prop.contactPage?.contacts.sort((a: any, b: any) => a.firstName?.localeCompare(b.firstName));
   return (
     <div>
       <div className="row">

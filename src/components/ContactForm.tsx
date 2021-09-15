@@ -1,11 +1,13 @@
+import React from "react";
 import { useState } from "react";
 import { Contact } from "../interfaces/Contact";
 import classes from "./ContactForm.module.css";
 import Email from "./Email";
 
 declare interface ContactFormProp {
-  contact?: Contact;
+  contact: Contact;
 }
+
 
 function ContactForm(prop: ContactFormProp) {
   const [showInput, setShowInput] = useState(false);
@@ -17,12 +19,16 @@ function ContactForm(prop: ContactFormProp) {
         <div className="col">
           <label htmlFor="firstName">First Name</label>
           <br />
-          <input type="text" id="firstName" value={prop.contact?.firstName} />
+          <input type="text" id="firstName" defaultValue={prop.contact.firstName} onChange={(e) => {
+            prop.contact.firstName = e.target.value;
+          }} />
         </div>
         <div className="col">
           <label htmlFor="lastName">Last Name</label>
           <br />
-          <input type="text" id="lastName" value={prop.contact?.lastName} />
+          <input type="text" id="lastName" defaultValue={prop.contact.lastName} onChange={(e) => {
+            prop.contact.lastName = e.target.value;
+          }} />
         </div>
       </div>
       <div className="row">
@@ -32,7 +38,7 @@ function ContactForm(prop: ContactFormProp) {
       </div>
       <div className="row">
         <div className="col">
-          {prop.contact?.emails.map((email) => {
+          {prop.contact.emails.map((email) => {
             return <Email email={email} />;
           })}
           {showInput && 
@@ -40,7 +46,7 @@ function ContactForm(prop: ContactFormProp) {
             <input type="text" id="newEmail"/>
             <button onClick={() => {
               var input = document.getElementById("newEmail") as HTMLInputElement;
-              prop.contact?.emails.push(input.value);
+              prop.contact.emails.push(input.value);
               setShowInput(false);
               setHasChange(true);
             }}>Add</button>
@@ -59,7 +65,26 @@ function ContactForm(prop: ContactFormProp) {
         </div>
         <div className="col">
           <button onClick={() => setHasChange(false)}>Cancel</button>
-          <button onClick={() => setHasChange(false)}>Save</button>
+          <button onClick={() => {
+            if (prop.contact && prop.contact.id) {
+              fetch("https://avb-contacts-api.herokuapp.com/contacts/" + prop.contact.id, {
+                method: 'PUT',
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(prop.contact)
+              });
+            } else {
+              fetch("https://avb-contacts-api.herokuapp.com/contacts/", {
+                method: 'POST',
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(prop.contact)
+              });
+            }
+            setHasChange(false);
+          }}>Save</button>
         </div>
       </div>
     </div>

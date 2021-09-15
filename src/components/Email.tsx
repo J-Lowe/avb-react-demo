@@ -8,9 +8,7 @@ function Email(prop: EmailProp) {
   const [showDelete, setShowDelete] = useState(false);
 
   return (
-    <div onMouseEnter={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)}>
-      <p>{prop.email} {showDelete && (<button>-</button>)}</p>
-    </div>
+      <p><span onMouseEnter={() => setShowDelete(true)} onMouseLeave={() => setShowDelete(false)}>{prop.email} {showDelete && (<button>-</button>)}</span></p>
   )
 }
 

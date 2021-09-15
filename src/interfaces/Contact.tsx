@@ -1,6 +1,6 @@
 export declare interface Contact {
-  id: number;
-  firstName: string;
-  lastName: string;
+  id: number | undefined;
+  firstName: string | undefined;
+  lastName: string | undefined;
   emails: string[];
 }
