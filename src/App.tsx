@@ -13,15 +13,20 @@ function App() {
     id: undefined,
     firstName: "",
     lastName: "",
-    emails: []
+    emails: [],
+    hasChange: false,
   });
+  const [updateList, setUpdateList] = useState(true);
 
   useEffect(() => {
-    fetch("https://avb-contacts-api.herokuapp.com/contacts/paginated").then(response => {return response.json()}).then(data => {
-      setIsLoading(false);
-      setContactList(data);
-    });
-  }, []);
+    if (updateList) {
+      fetch("https://avb-contacts-api.herokuapp.com/contacts/paginated").then(response => {return response.json()}).then(data => {
+        setIsLoading(false);
+        setContactList(data);
+        setUpdateList(false);
+      });
+    }
+  }, [updateList]);
 
   return (
     <div className="container">
@@ -30,7 +35,7 @@ function App() {
           <ContactList contactPage={contactList} setSelectedContact={setSelectedContact}/>
         </div>
         <div className="col">
-          <ContactForm contact={selectedContact}/>
+          <ContactForm contact={selectedContact} setUpdateList={setUpdateList} setSelectedContact={setSelectedContact} />
         </div>
       </div>
     </div>

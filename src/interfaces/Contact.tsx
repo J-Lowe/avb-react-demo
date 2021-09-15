@@ -3,4 +3,5 @@ export declare interface Contact {
   firstName: string | undefined;
   lastName: string | undefined;
   emails: string[];
+  hasChange: boolean;
 }
