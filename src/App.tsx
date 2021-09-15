@@ -32,7 +32,7 @@ function App() {
     <div className="container">
       <div className="row">
         <div className="col-3">
-          <ContactList contactPage={contactList} setSelectedContact={setSelectedContact}/>
+          <ContactList contactPage={contactList} setSelectedContact={setSelectedContact} selectedContactId={selectedContact.id}/>
         </div>
         <div className="col">
           <ContactForm contact={selectedContact} setUpdateList={setUpdateList} setSelectedContact={setSelectedContact} />

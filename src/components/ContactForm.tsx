@@ -36,17 +36,17 @@ function ContactForm(prop: ContactFormProp) {
   setValue("lastName", "" + prop.contact.lastName);
 
   return (
-    <div>
+    <div className="padMe">
       <div className="row">
         <div className="col">
           <label htmlFor="firstName">First Name</label>
           <br />
-          <input {...register("firstName")} />
+          <input className="lightBackground" {...register("firstName")} />
         </div>
         <div className="col">
           <label htmlFor="lastName">Last Name</label>
           <br />
-          <input {...register("lastName")} />
+          <input className="lightBackground" {...register("lastName")} />
         </div>
       </div>
       <div className="row">
@@ -62,25 +62,25 @@ function ContactForm(prop: ContactFormProp) {
           {showInput && 
           <div>
             <input type="text" id="newEmail"/>
-            <button onClick={() => {
+            <button className="btn footerBtn btn-success" onClick={() => {
               var input = document.getElementById("newEmail") as HTMLInputElement;
               prop.contact.emails.push(input.value);
               prop.contact.hasChange = true;
               setShowInput(false);
               setUpdateEmailList(true);
             }}>Add</button>
-            <button onClick={() => setShowInput(false)}>Cancel</button>
+            <button className="btn footerBtn" onClick={() => setShowInput(false)}>Cancel</button>
           </div>}
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <button onClick={() => setShowInput(true)}>+</button> add email
+          <button className={"btn addBtn"} onClick={() => setShowInput(true)}>+</button><span className={"addEmail"}> add email</span>
         </div>
       </div>
       <div className={classes.contactFooter + " row"}>
         <div className="col">
-          <button onClick={() => {
+          <button className="btn btn-danger" onClick={() => {
             if (prop.contact && prop.contact.id) {
               fetch("https://avb-contacts-api.herokuapp.com/contacts/" + prop.contact.id, {
                 method: 'DELETE'
@@ -88,8 +88,8 @@ function ContactForm(prop: ContactFormProp) {
             }
           }}>Delete</button>
         </div>
-        <div className="col">
-          <button onClick={() => {
+        <div className="col footer">
+          <button className="btn" onClick={() => {
             fetch("https://avb-contacts-api.herokuapp.com/contacts/" + prop.contact.id).then(response => {return response.json()}).then(data => {
               setValue("firstName", "" + data.firstName);
               setValue("lastName", "" + data.lastName);
@@ -98,7 +98,7 @@ function ContactForm(prop: ContactFormProp) {
               setUpdateEmailList(true);
             });
           }}>Cancel</button>
-          <button onClick={() => {
+          <button className="btn btn-primary footerBtn" onClick={() => {
             if (prop.contact && prop.contact.id) {
               prop.contact.firstName = getValues("firstName");
               prop.contact.lastName = getValues("lastName");

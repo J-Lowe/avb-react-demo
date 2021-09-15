@@ -3,3 +3,49 @@
   grid-template-columns: 1fr 5fr;
   grid-gap: 20px;
 }
+
+.addBtn {
+  border-radius: 100%;
+  background-color: blue;
+  color: white;
+}
+
+.addEmail {
+  color: blue;
+}
+
+.footer {
+  margin-bottom: 20px;
+}
+
+.padMe {
+  margin-top: 50px;
+  padding-left: 10px;
+}
+
+label {
+  font-size: 10pt;
+  color:gray;
+  padding-bottom: 0;
+}
+
+.contactList {
+  overflow-y: auto;
+  height: inherit;
+}
+
+.contactListDiv {
+  height: 100vh;
+}
+
+.footerBtn {
+  margin-left: 20px;
+}
+
+.lightBackground {
+  background-color: rgb(208, 241, 252);
+}
+
+.moveLeft{
+  margin-left: -40px;
+}
