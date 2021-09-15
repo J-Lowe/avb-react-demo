@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Contact } from "../interfaces/Contact";
 import classes from "./ContactForm.module.css";
 import Email from "./Email";
-import NameInput from "./NameInput";
 
 declare interface ContactFormProp {
   contact: Contact;
@@ -17,7 +16,7 @@ type FormData = {
 };
 
 function ContactForm(prop: ContactFormProp) {
-  const { register, setValue, handleSubmit, formState: { errors }, getValues } = useForm<FormData>();
+  const { register, setValue, getValues } = useForm<FormData>();
   const [showInput, setShowInput] = useState(false);
   const [updateEmailList, setUpdateEmailList] = useState(false);
 

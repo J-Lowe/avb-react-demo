@@ -1,6 +1,5 @@
 import classes from "./ContactList.module.css";
 import { ContactPage } from "../interfaces/ContactPage";
-import { Contact } from "../interfaces/Contact";
 
 export declare interface ContactListProp {
   contactPage?: ContactPage;
