@@ -99,26 +99,28 @@ function ContactForm(prop: ContactFormProp) {
             });
           }}>Cancel</button>
           <button className="btn btn-primary footerBtn" onClick={() => {
-            if (prop.contact && prop.contact.id) {
-              prop.contact.firstName = getValues("firstName");
-              prop.contact.lastName = getValues("lastName");
-              fetch("https://avb-contacts-api.herokuapp.com/contacts/" + prop.contact.id, {
-                method: 'PUT',
-                headers: {
-                  'Content-type': 'application/json'
-                },
-                body: JSON.stringify(prop.contact)
-              }).then(() => prop.setUpdateList(true));
-            } else {
-              prop.contact.firstName = getValues("firstName");
-              prop.contact.lastName = getValues("lastName");
-              fetch("https://avb-contacts-api.herokuapp.com/contacts/", {
-                method: 'POST',
-                headers: {
-                  'Content-type': 'application/json'
-                },
-                body: JSON.stringify(prop.contact)
-              }).then(() => prop.setUpdateList(true));
+            if (getValues("firstName") && getValues("lastName")) {
+              if (prop.contact && prop.contact.id) {
+                prop.contact.firstName = getValues("firstName");
+                prop.contact.lastName = getValues("lastName");
+                fetch("https://avb-contacts-api.herokuapp.com/contacts/" + prop.contact.id, {
+                  method: 'PUT',
+                  headers: {
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify(prop.contact)
+                }).then(() => prop.setUpdateList(true));
+              } else {
+                prop.contact.firstName = getValues("firstName");
+                prop.contact.lastName = getValues("lastName");
+                fetch("https://avb-contacts-api.herokuapp.com/contacts/", {
+                  method: 'POST',
+                  headers: {
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify(prop.contact)
+                }).then(() => prop.setUpdateList(true));
+              }
             }
           }}>Save</button>
         </div>
